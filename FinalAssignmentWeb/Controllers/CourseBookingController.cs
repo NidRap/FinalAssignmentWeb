@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FinalAssignment_DataAccess.Repository.IRepository;
 using FinalAssignment_Model.Models;
+using FinalAssignment_Model.Models.ModelDTO;
 using FinalAssignment_MOdels.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +27,7 @@ namespace FinalAssignment_API.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-		public IEnumerable<Course> Get()
+		public IEnumerable<CourseBooking> Get()
 		{
 			return _courseBookingRepository.GetAllCourses().ToList();
 
@@ -36,15 +37,15 @@ namespace FinalAssignment_API.Controllers
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public ActionResult<CourseDTO> CreateCourse([FromBody] CourseDTO courseDTO)
+		public ActionResult<CourseDTO> CreateCourse([FromBody] CourseBookingDTO courseBookingDTO)
 		{
-			if (courseDTO == null)
+			if (courseBookingDTO == null)
 			{
-				return BadRequest(courseDTO);
+				return BadRequest(courseBookingDTO);
 			}
 
 
-			Course model = _mapper.Map<Course>(courseDTO);
+			CourseBooking model = _mapper.Map<CourseBooking>(courseBookingDTO);
 			_courseBookingRepository.CreateCourse(model);
 
 
@@ -57,7 +58,7 @@ namespace FinalAssignment_API.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-		public ActionResult<Course> Remove(int id)
+		public ActionResult<CourseBooking> Remove(int id)
 		{
 			if (id == null)
 			{
@@ -65,7 +66,7 @@ namespace FinalAssignment_API.Controllers
 			}
 
 
-			Course model = _courseBookingRepository.GetCourse(id);
+			CourseBooking model = _courseBookingRepository.GetCourse(id);
 			_courseBookingRepository.RemoveCourse(model);
 			return Ok(model);
 
@@ -76,15 +77,15 @@ namespace FinalAssignment_API.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-		public ActionResult<Course> update(int Id, [FromBody] CourseDTO courseDTO)
+		public ActionResult<CourseBooking> update(int Id, [FromBody] CourseBookingDTO courseBookingDTO)
 		{
-			if (courseDTO == null)
+			if (courseBookingDTO == null)
 			{
 				return BadRequest();
 			}
 
 			var model =
-			_mapper.Map<Course>(courseDTO);
+			_mapper.Map<CourseBooking>(courseBookingDTO);
 			_courseBookingRepository.UpdateCourse(model);
 			return Ok(model);
 
@@ -95,7 +96,7 @@ namespace FinalAssignment_API.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-		public ActionResult<Course> GetIndividual(int id)
+		public ActionResult<CourseBooking> GetIndividual(int id)
 		{
 			if (id == null)
 			{
@@ -103,7 +104,7 @@ namespace FinalAssignment_API.Controllers
 			}
 
 
-			Course model = _courseBookingRepository.GetCourse(id);
+			CourseBooking model = _courseBookingRepository.GetCourse(id);
 
 			return Ok(model);
 

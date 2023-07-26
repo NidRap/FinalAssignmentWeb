@@ -9,11 +9,11 @@ namespace FinalAssignment_DataAccess.Repository.IRepository
 {
 	public interface ICourseBookingRepository
 	{
-		List<Course> GetAllCourses();
-		Course GetCourse(int Id);
-		void CreateCourse(Course entity);
-		void RemoveCourse(Course entity);
+		List<CourseBooking> GetAllCourses();
+		CourseBooking GetCourse(int Id);
+		void CreateCourse(CourseBooking entity);
+		void RemoveCourse(CourseBooking entity);
 
-		void UpdateCourse(Course entity);
+		void UpdateCourse(CourseBooking entity);
 	}
 }

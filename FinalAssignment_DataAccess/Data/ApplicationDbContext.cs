@@ -11,5 +11,7 @@ namespace FinalAssignment_DataAccess.Data
 
         }
         public DbSet<Course> Courses { get; set; }
-    }
+		public DbSet<CourseBooking> CourseBooking { get; set; }
+
+	}
 }

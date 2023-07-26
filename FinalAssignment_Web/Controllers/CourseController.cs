@@ -21,8 +21,8 @@ namespace FinalAssignment_Web.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var posts = await _courseService.GetAll();
-            return View(posts);
+            var model = await _courseService.GetAll();
+            return View(model);
         }
 
         public IActionResult Create()
@@ -31,16 +31,16 @@ namespace FinalAssignment_Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CourseDTO course)
+        public async Task<IActionResult> Create(CourseDTO courseDTO)
         {
             if (ModelState.IsValid)
             {
-                var result = await _courseService.CreateCourse(course);
+                var result = await _courseService.CreateCourse(courseDTO);
                 TempData["success"] = "Course Created Successfully";
                 return RedirectToAction(nameof(Index), new { id = result.Id });
             }
 
-            return View(course);
+            return View(courseDTO);
         }
 
         public async Task<IActionResult> Edit(int id)

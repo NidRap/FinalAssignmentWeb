@@ -11,8 +11,17 @@ namespace FinalAssignment_Model.Models.ModelDTO
 	public class CourseBookingDTO
 	{
 		[Key]
-		[ForeignKey("Course")]
+
+		public int Id { get; set; }
+		[Display(Name = "Course Id")]
 		public int CourseId { get; set; }
+
+		[ForeignKey("Course")]
+		public Course Course { get; set; }
+
+		[Display(Name = "Course Name")]
 		public string CourseName { get; set; }
+
+		public string Email { get; set; }
 	}
 }

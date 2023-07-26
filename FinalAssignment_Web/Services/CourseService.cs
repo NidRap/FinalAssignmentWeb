@@ -33,8 +33,8 @@ namespace FinalAssignment_Web.Services
 			HttpResponseMessage response = await _httpClient.GetAsync("/api/Course/");
 			response.EnsureSuccessStatusCode();
 			string content = await response.Content.ReadAsStringAsync();
-			IEnumerable<Course> blog = JsonConvert.DeserializeObject<IEnumerable<Course>>(content);
-			return blog;
+			IEnumerable<Course> model = JsonConvert.DeserializeObject<IEnumerable<Course>>(content);
+			return model;
 
 		}
 

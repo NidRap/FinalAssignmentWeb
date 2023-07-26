@@ -16,36 +16,36 @@ namespace FinalAssignment_DataAccess.Repository
 		{
 			_db = db;
 		}
-		public void CreateCourse(Course entity)
+		public void CreateCourse(CourseBooking entity)
 		{
-			_db.Courses.Add(entity);
+			_db.CourseBooking.Add(entity);
 			_db.SaveChanges();
 
 		}
 
-		public Course GetCourse(int Id)
+		public CourseBooking GetCourse(int Id)
 		{
 
 
-			return _db.Courses.FirstOrDefault(u => u.Id == Id);
+			return _db.CourseBooking.FirstOrDefault(u => u.Id == Id);
 
 
 
 		}
 
-		public List<Course> GetAllCourses()
+		public List<CourseBooking> GetAllCourses()
 		{
-			return _db.Courses.ToList();
+			return _db.CourseBooking.ToList();
 		}
 
-		public void RemoveCourse(Course entity)
+		public void RemoveCourse(CourseBooking entity)
 		{
 			_db.Remove(entity);
 			_db.SaveChanges();
 		}
 
 
-		public void UpdateCourse(Course entity)
+		public void UpdateCourse(CourseBooking entity)
 		{
 			_db.Update(entity);
 			_db.SaveChanges();

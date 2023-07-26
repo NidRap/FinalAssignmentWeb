@@ -11,8 +11,18 @@ namespace FinalAssignment_Model.Models
 	public class CourseBooking
 	{
 		[Key]
-		[ForeignKey("Course")]
+		
+		public int Id { get; set; }
+
+		[Display(Name = "Course Id")]
 		public int CourseId { get; set; }
+
+		[ForeignKey("CourseId")]
+		public Course Course { get; set; }
+
+		[Display(Name = "Course Name")]
 		public string CourseName { get; set; }
+
+		public string Email { get; set; }
 	}
 }

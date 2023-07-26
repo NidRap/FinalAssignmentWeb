@@ -80,15 +80,15 @@ namespace FinalAssignmentWeb.Controllers
 
             public ActionResult<Course> update(int Id, [FromBody] CourseDTO courseDTO)
             {
-                if (courseDTO == null)
+                if (courseDTO == null || Id!= courseDTO.Id)
                 {
                     return BadRequest();
                 }
 
-                var model =
-                _mapper.Map<Course>(courseDTO);
-                _courseRepository.UpdateCourse(model);
-                return Ok(model);
+            var model =
+            _mapper.Map<Course>(courseDTO);
+            _courseRepository.UpdateCourse(model);
+                return Ok(courseDTO);
 
             }
 
