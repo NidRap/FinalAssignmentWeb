@@ -1,0 +1,47 @@
+﻿@using FinalAssignment_Model.Models;
+@model IEnumerable<Course>
+
+<h2>Blog Posts</h2>
+<div class="col text-end pt-1">
+	<a asp-controller="Course" asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>Create New Course</a>
+</div>
+
+@if (Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Course Name</th>
+				<th>Course Description</th>
+				<th>Available Seats</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Edit/Delete</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var post in Model)
+			{
+				<tr>
+					<td>@post.courseName</td>
+					<td>@post.courseDescription</td>
+					<td>@post.AvailableSeats</td>
+					<td>@post.StartDate</td>
+
+					<td>@post.EndDate</td>
+
+					<td>
+						<a asp-action="Edit" asp-route-id="@post.Id">Edit</a> |
+						<a asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No Data available.</p>
+}
