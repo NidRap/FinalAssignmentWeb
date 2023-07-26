@@ -2,8 +2,9 @@
 using FinalAssignment_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinalAssignment_Web.Controllers
+namespace FinalAssignment_Web.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

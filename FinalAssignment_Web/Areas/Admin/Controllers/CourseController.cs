@@ -3,17 +3,18 @@ using FinalAssignment_MOdels.Models;
 using FinalAssignment_Web.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinalAssignment_Web.Controllers
+namespace FinalAssignment_Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CourseController : Controller
     {
-        
-        
+
+
         private readonly ICourseService _courseService;
-       
+
         public CourseController(ICourseService courseService)
         {
-           
+
             _courseService = courseService;
         }
 
