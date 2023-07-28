@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Course>
+
+<h2>Approval/Rejection</h2>
+
+@if (Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Course Name</th>
+				<th>Course Description</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var course in Model)
+			{
+				<tr>
+					<td>@course.courseName</td>
+					<td>@course.courseDescription</td>
+					<td>
+						<form asp-action="ApprovedCourse" method="post">
+
+							<input type="hidden" name="id" value="@course.Id" />
+							<button type="submit">Approve</button>
+						</form>
+						<form asp-action="RejectCourse" method="post">
+							<input type="hidden" name="id" value="@course.Id" />
+							<button type="submit">Reject</button>
+						</form>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No Courses found.</p>
+}

@@ -1,10 +1,11 @@
-﻿using FinalAssignment_DataAccess.Data;
+﻿using System.Linq.Expressions;
+using FinalAssignment_DataAccess.Data;
 using FinalAssignment_DataAccess.Repository.IRepository;
 using FinalAssignment_Model.Models;
 
 namespace FinalAssignment_DataAccess.Repository
 {
-    public class CourseRepository : ICourseRepository
+    public class CourseRepository : ICourseRepository<Course>
     {
         private readonly ApplicationDbContext _db;
         public CourseRepository(ApplicationDbContext db)
@@ -28,10 +29,10 @@ namespace FinalAssignment_DataAccess.Repository
 
         }
 
-        public List<Course> GetAllCourses()
-        {
-            return _db.Courses.ToList();
-        }
+        //public List<Course> GetAllCourses()
+        //{
+        //    return _db.Courses.ToList();
+        //}
 
         public void RemoveCourse(Course entity)
         {
@@ -45,5 +46,10 @@ namespace FinalAssignment_DataAccess.Repository
             _db.Update(entity);
             _db.SaveChanges();
         }
-    }
+
+		public List<Course> GetAllCourses(Expression<Func<Course, bool>>? filter = null, string? includeProperties = null)
+		{
+			return _db.Courses.ToList();
+		}
+	}
 }

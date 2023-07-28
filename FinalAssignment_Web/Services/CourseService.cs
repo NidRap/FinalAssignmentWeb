@@ -16,7 +16,7 @@ namespace FinalAssignment_Web.Services
 	{
 
 		private readonly HttpClient _httpClient;
-		private const string Baseurl = "http://localhost:5242";
+		private const string Baseurl = "https://localhost:5242";
 		public CourseService(HttpClient httpClient, IConfiguration configuration)
 		{
 			_httpClient = httpClient;

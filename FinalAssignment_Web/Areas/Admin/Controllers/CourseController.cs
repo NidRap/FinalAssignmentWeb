@@ -40,7 +40,7 @@ namespace FinalAssignment_Web.Areas.Admin.Controllers
                 TempData["success"] = "Course Created Successfully";
                 return RedirectToAction(nameof(Index), new { id = result.Id });
             }
-
+          
             return View(courseDTO);
         }
 

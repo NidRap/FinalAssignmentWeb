@@ -32,8 +32,8 @@ namespace FinalAssignment_Model.Models
         [Column(TypeName = "int")]
         public int AvailableSeats { get; set; }
 
-        //public bool IsApproved { get; set; }
-        //public bool IsRejected { get; set; }
+		public bool IsApproved { get; set; }
+		public bool IsRejected { get; set; }
 
-    }
+	}
 }
