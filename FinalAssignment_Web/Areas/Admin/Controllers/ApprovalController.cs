@@ -1,9 +1,12 @@
 ﻿using FinalAssignment_Web.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalAssignment_Web.Areas.Admin.Controllers
 {
 	[Area("Admin")]
+
+	[Authorize(Roles ="Admin")]
 	public class ApprovalController : Controller
 	{
 		private readonly IApprovalService _approvalService;

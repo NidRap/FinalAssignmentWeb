@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using FinalAssignment_Utility;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -29,9 +30,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Course" asp-action="Index">Courses</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Approval" asp-action="Index">CoursesApproved</a>
-                        </li>
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Approval" asp-action="Index">CoursesApproved</a>
+                            </li>
+                        }
                     </ul>
                     <partial name ="_LoginPartial"/>
                 </div>
