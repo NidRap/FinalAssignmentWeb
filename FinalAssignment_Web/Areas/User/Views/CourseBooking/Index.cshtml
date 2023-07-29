@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CourseBooking>
+@using FinalAssignment_Model.Models;
+
+<h2>Course Booking List</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Available Seats</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model)
+            {
+               
+                <tr>
+
+                    <td>@result.Course.courseName</td>
+                    <td>@result.Course.courseDescription</td>
+                    
+                    <td>@result.Course.StartDate</td>
+                    <td>@result.Course.EndDate</td>
+                    <td>@result.Course.AvailableSeats</td>
+                  
+
+                    <td>
+                        <form asp-action="CreateBooking" method="post">
+                            <input type="hidden" name="courseId" value="@result.CourseId" />
+                            <button type="submit">Enroll</button>
+                        </form>
+                        <form asp-action="DeleteBooking" method="post">
+                            <input type="hidden" name="id" value="@result.CourseId" />
+                            <button type="submit">Delete</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Course available.</p>
+}

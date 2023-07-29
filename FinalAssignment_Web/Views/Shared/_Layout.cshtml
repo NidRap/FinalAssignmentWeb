@@ -36,6 +36,13 @@
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Approval" asp-action="Index">CoursesApproved</a>
                             </li>
                         }
+                        @if (User.IsInRole(SD.Role_User))
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="User" asp-controller="CourseBooking" asp-action="Index">CourseBooking</a>
+                            </li>
+                        }
                     </ul>
                     <partial name ="_LoginPartial"/>
                 </div>

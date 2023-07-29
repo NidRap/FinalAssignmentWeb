@@ -18,14 +18,13 @@ namespace FinalAssignmentWeb.Controllers
 
 		private readonly IMapper _mapper;
 		private readonly ICourseRepository<Course> _courseRepository;
-		private readonly ApplicationDbContext _dbContext;
+	
 
-
-		public CourseController(IMapper mapper, ICourseRepository<Course> courseRepository, ApplicationDbContext dbContext)
+		public CourseController(IMapper mapper, ICourseRepository<Course> courseRepository)
 		{
 			_mapper = mapper;
 			_courseRepository = courseRepository;
-			_dbContext = dbContext;
+		
 
 		}
 		[HttpGet]
@@ -55,7 +54,7 @@ namespace FinalAssignmentWeb.Controllers
 			_courseRepository.CreateCourse(model);
 
 
-			return Ok();
+			return Created("","");
 
 
 		}

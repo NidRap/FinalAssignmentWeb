@@ -1,7 +1,7 @@
 ﻿@using FinalAssignment_Model.Models;
 @model IEnumerable<Course>
 
-<h2>Blog Posts</h2>
+<h2>Multiple Courses</h2>
 <div class="col text-end pt-1">
 	<a asp-controller="Course" asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>Create New Course</a>
 </div>
@@ -22,20 +22,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var post in Model)
+			@foreach (var course in Model)
 			{
 				<tr>
-					<td>@post.courseName</td>
-					<td>@post.courseDescription</td>
-					<td>@post.AvailableSeats</td>
-					<td>@post.StartDate</td>
+					<td>@course.courseName</td>
+					<td>@course.courseDescription</td>
+					<td>@course.AvailableSeats</td>
+					<td>@course.StartDate</td>
 
-					<td>@post.EndDate</td>
+					<td>@course.EndDate</td>
 
 					<td>
-						<a asp-action="Edit" asp-route-id="@post.Id">Edit</a> 
-						<a asp-action="Delete" asp-route-id="@post.Id">Delete</a>
-						<a asp-action="Delete" asp-route-id="@post.Id">Details</a>
+						<a asp-action="Edit" asp-route-id="@course.Id">Edit</a> 
+						<a asp-action="Delete" asp-route-id="@course.Id">Delete</a>
+						
 
 					</td>
 				</tr>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FinalAssignment_DataAccess.Data;
 using FinalAssignment_DataAccess.Repository.IRepository;
 using FinalAssignment_Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalAssignment_DataAccess.Repository
 {
@@ -13,9 +14,10 @@ namespace FinalAssignment_DataAccess.Repository
 	{
 		private readonly ApplicationDbContext _db;
 		public CourseBookingRepository(ApplicationDbContext db)
-		{
+        {
 			_db = db;
-		}
+            db.CourseBooking.Include(u => u.Course).ToList();
+        }
 		public void CreateCourse(CourseBooking entity)
 		{
 			_db.CourseBooking.Add(entity);
@@ -27,7 +29,7 @@ namespace FinalAssignment_DataAccess.Repository
 		{
 
 
-			return _db.CourseBooking.FirstOrDefault(u => u.Id == Id);
+			return _db.CourseBooking.FirstOrDefault(u => u.CourseId == Id);
 
 
 

@@ -22,6 +22,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddScoped<ICourseRepository<Course>, CourseRepository>();
+builder.Services.AddScoped<ICourseBookingRepository, CourseBookingRepository>();
+
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");

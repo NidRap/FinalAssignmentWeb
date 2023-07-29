@@ -15,17 +15,17 @@
 		<span asp-validation-for="courseDescription" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="StartDate">Start Date:</label>
+		<label asp-for="StartDate">Start Date</label>
 		<textarea asp-for="StartDate" class="form-control"></textarea>
 		<span asp-validation-for="StartDate" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="EndDate">End Date:</label>
+		<label asp-for="EndDate">End Date</label>
 		<textarea asp-for="EndDate" class="form-control"></textarea>
 		<span asp-validation-for="EndDate" class="text-danger"></span>
 	</div>
 	<div class="col-5 offset-3">
-		<a asp-controller="Course" asp-action="Index" class="btn-primary btn form-control">Back To Courses </a>
+		<a asp-controller="Course" asp-action="Index" class="btn-primary btn form-control">Back To All Courses </a>
 	</div>
 	<button type="submit" class="btn btn-primary">Create</button>
 </form>

@@ -20,9 +20,6 @@ namespace FinalAssignment_Model.Models
 		[ForeignKey("CourseId")]
 		public Course Course { get; set; }
 
-		[Display(Name = "Course Name")]
-		public string CourseName { get; set; }
-
-		public string Email { get; set; }
+	
 	}
 }

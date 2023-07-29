@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FinalAssignment_Model.Models;
+using FinalAssignment_Model.Models.ModelDTO;
 using FinalAssignment_MOdels.Models;
 
 namespace FinalAssignmentWeb
@@ -9,7 +10,10 @@ namespace FinalAssignmentWeb
         public MappingConfig()
         {
             CreateMap<Course,CourseDTO>().ReverseMap();
-            
+
+            CreateMap<CourseBooking, CourseBookingDTO>().ReverseMap();
+
+
         }
     }
 }

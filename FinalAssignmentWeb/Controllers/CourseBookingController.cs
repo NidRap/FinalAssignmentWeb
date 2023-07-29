@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
+using Azure;
+using FinalAssignment_DataAccess.Data;
+using FinalAssignment_DataAccess.Repository;
 using FinalAssignment_DataAccess.Repository.IRepository;
 using FinalAssignment_Model.Models;
 using FinalAssignment_Model.Models.ModelDTO;
@@ -13,12 +17,16 @@ namespace FinalAssignment_API.Controllers
 	{
 		private readonly IMapper _mapper;
 		private readonly ICourseBookingRepository _courseBookingRepository;
+		private readonly ICourseRepository<Course> _courseRepository;
+		private readonly ApplicationDbContext _db;
 
 
-		public CourseBookingController(IMapper mapper, ICourseBookingRepository courseBookingRepository)
+        public CourseBookingController(IMapper mapper, ICourseBookingRepository courseBookingRepository,ICourseRepository<Course> courseRepository, ApplicationDbContext db)
 		{
 			_mapper = mapper;
 			_courseBookingRepository = courseBookingRepository;
+			_courseRepository = courseRepository;
+			_db = db;
 
 
 		}
@@ -37,19 +45,42 @@ namespace FinalAssignment_API.Controllers
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public ActionResult<CourseDTO> CreateCourse([FromBody] CourseBookingDTO courseBookingDTO)
+		public ActionResult<CourseBookingDTO> CreateCourse([FromBody] CourseBookingDTO courseBookingDTO)
 		{
-			if (courseBookingDTO == null)
-			{
-				return BadRequest(courseBookingDTO);
-			}
+            var course = _db.Courses.FirstOrDefault(c => c.Id == courseBookingDTO.CourseId);
+            if (course == null)
+            {
+             
+                return NotFound();
+            }
 
 
-			CourseBooking model = _mapper.Map<CourseBooking>(courseBookingDTO);
-			_courseBookingRepository.CreateCourse(model);
+            if (course.AvailableSeats <= 0)
+            {
+               
+                return BadRequest();
+            }
+            var courseBooking = new CourseBookingDTO
+            {
+                CourseId = courseBookingDTO.CourseId,
+              
 
 
-			return Ok();
+            };
+
+            CourseBooking result = _mapper.Map<CourseBooking>(courseBooking);
+
+            _courseBookingRepository.CreateCourse(result);
+            course.AvailableSeats--;
+            _courseRepository.UpdateCourse(course);
+
+
+            _db.SaveChanges();
+
+
+            return Ok();
+
+
 
 
 		}
@@ -60,17 +91,34 @@ namespace FinalAssignment_API.Controllers
 
 		public ActionResult<CourseBooking> Remove(int id)
 		{
-			if (id == null)
-			{
-				return BadRequest();
-			}
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            var booking = _courseBookingRepository.GetCourse(id);
+            if (booking == null)
+            {
+               
+                return NotFound();
+            }
 
 
-			CourseBooking model = _courseBookingRepository.GetCourse(id);
-			_courseBookingRepository.RemoveCourse(model);
-			return Ok(model);
+            _courseBookingRepository.RemoveCourse(booking);
+            _db.SaveChanges();
 
-		}
+            var course = _db.Courses.FirstOrDefault(u => u.Id == booking.CourseId);
+            if (course != null)
+            {
+                course.AvailableSeats++;
+                _courseRepository.UpdateCourse(course);
+                _db.SaveChanges();
+
+            }
+
+            return Ok();
+
+        }
 
 		[HttpPut("{Id:int}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
@@ -91,24 +139,35 @@ namespace FinalAssignment_API.Controllers
 
 		}
 
-		[HttpGet("{id:int}")]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("{id:int}", Name = "GetIndividual")]
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
 		public ActionResult<CourseBooking> GetIndividual(int id)
 		{
-			if (id == null)
-			{
-				return BadRequest();
-			}
+            if (id == 0)
+            {
+
+            
+                return BadRequest();
+
+            }
+
+            var course = _courseBookingRepository.GetCourse(id);
+            if (course == null)
+            {
+              
+                return NotFound();
 
 
-			CourseBooking model = _courseBookingRepository.GetCourse(id);
+            }
 
-			return Ok(model);
-
-		}
-
-	}
+        
+            return Ok();
+        }
+           
 }
+	}
+

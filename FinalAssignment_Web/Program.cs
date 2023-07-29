@@ -20,6 +20,8 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<ICourseService, CourseService>();
 builder.Services.AddHttpClient<IApprovalService, ApprovalService>();
+builder.Services.AddHttpClient<ICourseBookingService, CourseBookingService>();
+
 
 
 var app = builder.Build();

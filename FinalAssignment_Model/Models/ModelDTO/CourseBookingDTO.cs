@@ -16,12 +16,7 @@ namespace FinalAssignment_Model.Models.ModelDTO
 		[Display(Name = "Course Id")]
 		public int CourseId { get; set; }
 
-		[ForeignKey("Course")]
-		public Course Course { get; set; }
 
-		[Display(Name = "Course Name")]
-		public string CourseName { get; set; }
-
-		public string Email { get; set; }
+		
 	}
 }
