@@ -39,7 +39,7 @@ namespace FinalAssignment_Web.Areas.Admin.Controllers
             {
                 var result = await _courseService.CreateCourse(courseDTO);
                 TempData["success"] = "Course Created Successfully";
-                return RedirectToAction(nameof(Index), new { id = result.Id });
+                return RedirectToAction(nameof(Index));
             }
           
             return View(courseDTO);

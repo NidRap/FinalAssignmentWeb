@@ -59,7 +59,7 @@ namespace FinalAssignmentWeb.Controllers
 
 
 		}
-		[Authorize(Roles ="Admin")]
+//	[Authorize(Roles ="Admin")]
 		[HttpDelete("{id:int}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
