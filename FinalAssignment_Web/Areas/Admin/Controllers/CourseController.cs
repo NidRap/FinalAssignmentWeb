@@ -1,6 +1,7 @@
 ﻿using FinalAssignment_Model.Models;
 using FinalAssignment_MOdels.Models;
 using FinalAssignment_Web.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalAssignment_Web.Areas.Admin.Controllers
@@ -63,12 +64,15 @@ namespace FinalAssignment_Web.Areas.Admin.Controllers
             return View(course);
         }
 
+       // [Authorize(Roles = "admin")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var course = await _courseService.GetIndividual(id);
             return View(course);
         }
 
+      //  [Authorize(Roles = "admin")]
         [HttpPost]
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteCourse(int id)

@@ -3,6 +3,7 @@ using FinalAssignment_DataAccess.Data;
 using FinalAssignment_DataAccess.Repository.IRepository;
 using FinalAssignment_Model.Models;
 using FinalAssignment_MOdels.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalAssignmentWeb.Controllers
@@ -58,6 +59,7 @@ namespace FinalAssignmentWeb.Controllers
 
 
 		}
+		[Authorize(Roles ="Admin")]
 		[HttpDelete("{id:int}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
