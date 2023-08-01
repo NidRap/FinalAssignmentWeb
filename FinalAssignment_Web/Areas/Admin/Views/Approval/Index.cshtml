@@ -13,7 +13,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var course in Model)
+
+			@foreach (var course in Model) 
 			{
 				<tr>
 					<td>@course.courseName</td>
@@ -36,5 +37,5 @@
 }
 else
 {
-	<p>No Courses found.</p>
+	<p>No Approvals/Rejections Courses found.</p>
 }

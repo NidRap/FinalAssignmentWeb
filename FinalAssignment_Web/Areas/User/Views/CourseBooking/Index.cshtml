@@ -27,10 +27,12 @@
                     <td>@result.Course.StartDate</td>
                     <td>@result.Course.EndDate</td>
                     <td>@result.Course.AvailableSeats</td>
-                  
+                   @*<label>Total Students:</label>  @ViewBag.Total*@
+                
 
                     <td>
                         <form asp-action="CreateBooking" method="post">
+                          
                             <input type="hidden" name="courseId" value="@result.CourseId" />
                             <button type="submit">Enroll</button>
                         </form>

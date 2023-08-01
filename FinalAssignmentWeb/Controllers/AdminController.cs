@@ -27,7 +27,7 @@ namespace FinalAssignment_API.Controllers
 		[HttpGet]
 		public IActionResult GetAllApprovalsRejections()
 		{
-			IEnumerable<Course> model = _courseRepository.GetAllCourses(u => u.IsApproved == false && u.IsRejected == false);
+			IEnumerable<Course> model = _courseRepository.GetAllCourses();
 			if (model == null)
 			{
 				return NotFound();

@@ -1,5 +1,7 @@
-﻿@using FinalAssignment_Model.Models;
-@model Course;
+﻿@using FinalAssignment_Model.Models.ModelDTO;
+@using FinalAssignment_MOdels.Models
+
+@model CourseDTO;
 
 <h2>Create Course</h2>
 
@@ -20,10 +22,16 @@
 		<span asp-validation-for="StartDate" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="EndDate">End Date</label>
+		<label asp-for="EndDate">End Date </label>
 		<textarea asp-for="EndDate" class="form-control"></textarea>
 		<span asp-validation-for="EndDate" class="text-danger"></span>
 	</div>
+	<div class="form-group">
+		<label asp-for="AvailableSeats">Available Seats</label>
+		<textarea asp-for="AvailableSeats" class="form-control"></textarea>
+		<span asp-validation-for="AvailableSeats" class="text-danger"></span>
+	</div>
+
 	<div class="col-5 offset-3">
 		<a asp-controller="Course" asp-action="Index" class="btn-primary btn form-control">Back To All Courses </a>
 	</div>

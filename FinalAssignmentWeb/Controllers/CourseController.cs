@@ -35,7 +35,7 @@ namespace FinalAssignmentWeb.Controllers
 
 		public IEnumerable<Course> Get()
 		{
-			return _courseRepository.GetAllCourses().ToList();
+			return _courseRepository.GetAll().ToList();
 
 		}
 

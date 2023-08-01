@@ -26,6 +26,10 @@ namespace FinalAssignment_Web.Areas.User.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //ViewBag.Total = _courseBookingService.GetCourseBooking();
+
+            //return View();
+
             var course = await _courseBookingService.GetCourseBooking();
 
             var booking = _courseService.GetAll();
@@ -36,25 +40,27 @@ namespace FinalAssignment_Web.Areas.User.Controllers
             return View(course);
         }
 
-        public async Task<IActionResult> CreateBooking()
+        public async Task<IActionResult> CreateCourseBooking(int id)
         {
-           
-            return View();
+         
+           return View();
         }
 
       
 
         [HttpPost]
+     
         public async Task<IActionResult> CreateBooking(int courseId)
         {
             var course = await _courseService.GetIndividual(courseId);
+          //  var course = await _courseBookingService.GetIndividualCourseBooking(courseId);
+
             CourseBookingDTO booking = new CourseBookingDTO
             {
                 CourseId = courseId,
 
 
             };
-
 
             await _courseBookingService.CreateCourseBooking(booking);
             TempData["Success"] = "Enrollment Done Successfully";
@@ -63,9 +69,6 @@ namespace FinalAssignment_Web.Areas.User.Controllers
 
 
         }
-
-
-
 
 
         public async Task<IActionResult> DeleteCourseBooking(int id)

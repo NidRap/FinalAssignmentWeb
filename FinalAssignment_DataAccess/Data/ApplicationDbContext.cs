@@ -11,6 +11,7 @@ namespace FinalAssignment_DataAccess.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { 
         
 
+
         }
         public DbSet<Course> Courses { get; set; }
 		public DbSet<CourseBooking> CourseBooking { get; set; }

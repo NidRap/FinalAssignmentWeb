@@ -2,15 +2,18 @@
 using FinalAssignment_DataAccess.Data;
 using FinalAssignment_DataAccess.Repository.IRepository;
 using FinalAssignment_Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalAssignment_DataAccess.Repository
 {
     public class CourseRepository : ICourseRepository<Course>
     {
         private readonly ApplicationDbContext _db;
+       
         public CourseRepository(ApplicationDbContext db)
         {
             _db = db;
+          
         }
         public void CreateCourse(Course entity)
         {
@@ -47,9 +50,16 @@ namespace FinalAssignment_DataAccess.Repository
             _db.SaveChanges();
         }
 
-		public List<Course> GetAllCourses(Expression<Func<Course, bool>>? filter = null, string? includeProperties = null)
-		{
-			return _db.Courses.ToList();
-		}
-	}
+
+
+        public List<Course> GetAllCourses()
+        {
+            return _db.Courses.Where(u => u.IsApproved == false && u.IsRejected == false).ToList();
+        }
+
+        public List<Course> GetAll()
+        {
+            return _db.Courses.ToList();
+        }
+    }
 }
